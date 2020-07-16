@@ -43,4 +43,9 @@ public interface View {
      * This method allows to open the file 
      */
     void openFile();
+    
+    /**
+    *This method allow to start the view 
+    */
+    void initView();
 }

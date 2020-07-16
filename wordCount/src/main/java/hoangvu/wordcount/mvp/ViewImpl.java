@@ -39,14 +39,19 @@ public class ViewImpl implements View{
 
     @Override
     public void openFile() {
-        Scanner scanner = new Scanner(System.in);
+        Scanner scanner = new Scanner(System.in);        
+        String path = scanner.nextLine();
+        presenter.onOpenFile(path);
+    }
+
+    @Override
+    public void initView() {
         System.out.println("------------------------------");
         System.out.println("Welcome to word count application");
         System.out.println("------------------------------");
         System.out.println("Please enter file path:");
         System.out.print(">>");
-        String path = scanner.nextLine();
-        presenter.onOpenFile(path);
+        openFile();
     }
     
 }

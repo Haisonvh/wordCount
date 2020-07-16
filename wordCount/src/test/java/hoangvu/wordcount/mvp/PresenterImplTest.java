@@ -154,5 +154,10 @@ public class PresenterImplTest {
         @Override
         public void openFile() {
         }
+
+        @Override
+        public void initView() {
+        
+        }
     }
 }

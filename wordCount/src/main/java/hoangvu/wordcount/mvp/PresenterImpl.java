@@ -70,4 +70,8 @@ public class PresenterImpl implements Presenter {
 
     }
 
+    @Override
+    public void startView() {
+        view.initView();
+    }
 }

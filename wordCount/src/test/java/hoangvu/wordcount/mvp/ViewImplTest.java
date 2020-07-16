@@ -8,6 +8,7 @@ package hoangvu.wordcount.mvp;
 import hoangvu.system.Constants;
 import java.io.ByteArrayInputStream;
 import java.io.ByteArrayOutputStream;
+import java.io.InputStream;
 import java.io.PrintStream;
 import java.util.ArrayList;
 import java.util.List;
@@ -20,6 +21,7 @@ import org.junit.jupiter.api.Test;
 
 
 import static org.junit.jupiter.api.Assertions.assertThrows;
+import static org.junit.jupiter.api.Assertions.assertTrue;
 import org.junit.jupiter.api.function.Executable;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.ValueSource;
@@ -116,6 +118,20 @@ public class ViewImplTest {
         target.openFile();
         assertEquals("C:\\test.txt", presenter.filePath);
     }
+    
+    @DisplayName("Should display information when initView")
+    @Test
+    public void shouldDisplayInformationWhenInitView(){
+        presenter = new PresenterMock();
+        target.setPresenter(presenter);        
+        InputStream originalIn = System.in;  
+        ByteArrayInputStream in = new ByteArrayInputStream("\r\n".getBytes());
+        System.setIn(in);        
+        target.initView();
+        assertTrue(outContent.toString().contains("Welcome to word count application"));
+        assertTrue(outContent.toString().contains("Please enter file path:\r\n>>"));
+        System.setIn(originalIn);
+    }
 
     private class PresenterMock implements Presenter {
 
@@ -124,6 +140,11 @@ public class ViewImplTest {
         @Override
         public void onOpenFile(String path) {
             filePath = path;
+        }
+
+        @Override
+        public void startView() {
+        
         }
 
     }

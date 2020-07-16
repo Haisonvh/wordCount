@@ -11,4 +11,9 @@ public interface Presenter {
      * @param path directory of the file
      */
     void onOpenFile(String path);
+    
+    /**
+     * 
+     */
+    void startView();
 }
