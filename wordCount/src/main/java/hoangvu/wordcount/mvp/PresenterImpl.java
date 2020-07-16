@@ -36,10 +36,11 @@ public class PresenterImpl implements Presenter {
                 view.showMessage(Constants.NOTICE_EXIT);
             } else {
                 Map<String, Long> counterMap = Files.lines(Paths.get(path))
-                        .flatMap(line -> Arrays.stream(line.trim().split(" ")))
                         .parallel()
+                        .flatMap(line -> Arrays.stream(line.trim().split(" ")))
+                        .map(map -> map.replaceAll("[,.!:;?]", ""))
                         .collect(Collectors.groupingBy(Function.identity(), Collectors.counting()));
-
+                        
                 model.setCounterMap(counterMap);
 
                 //process and update view
