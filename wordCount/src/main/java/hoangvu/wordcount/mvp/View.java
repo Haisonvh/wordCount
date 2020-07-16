@@ -33,10 +33,10 @@ public interface View {
     void updateListWord(List<String> data);
     
     /**
-     * This method will allow view display error message
+     * This method will allow view display message
      * @param message error message need to be displayed
      */
-    void showError(String message);
+    void showMessage(String message);
     
     
     /**

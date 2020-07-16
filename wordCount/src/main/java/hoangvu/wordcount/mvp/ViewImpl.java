@@ -1,6 +1,7 @@
 
 package hoangvu.wordcount.mvp;
 
+import hoangvu.system.Constants;
 import java.util.List;
 import java.util.Scanner;
 
@@ -14,26 +15,26 @@ public class ViewImpl implements View{
     @Override
     public void setPresenter(final Presenter presenter) throws NullPointerException {
         if (presenter == null)
-            throw new NullPointerException("Presenter is null");
+            throw new NullPointerException(Constants.ERROR_NULL_PRESENTER);
         this.presenter = presenter;
     }
 
     @Override
     public void updateTotalWordStartWithM(Long total) {
-        System.out.println("Number of Word start with M or m: "+total);
+        System.out.println(Constants.NOTICE_NUMBER_OF_WORD+total);
     }
 
     @Override
     public void updateListWord(List<String> data) {
         if (data!=null && !data.isEmpty()){
-            System.out.println("List of word longer than 5 characters:");
+            System.out.println(Constants.NOTICE_LIST_OF_WORD);
             data.forEach(line -> {System.out.println(line);});
         }        
     }
 
     @Override
-    public void showError(String message) {
-        System.out.println("ERROR: "+message);
+    public void showMessage(String message) {
+        System.out.println(message);
     }
 
     @Override

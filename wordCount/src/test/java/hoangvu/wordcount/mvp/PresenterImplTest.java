@@ -5,6 +5,7 @@
  */
 package hoangvu.wordcount.mvp;
 
+import hoangvu.system.Constants;
 import java.util.List;
 import org.junit.jupiter.api.AfterEach;
 
@@ -14,8 +15,11 @@ import org.junit.jupiter.api.Test;
 
 
 import static org.junit.jupiter.api.Assertions.assertArrayEquals;
+import static org.junit.jupiter.api.Assertions.assertDoesNotThrow;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertTrue;
+import org.junit.jupiter.params.ParameterizedTest;
+import org.junit.jupiter.params.provider.ValueSource;
 
 /**
  *
@@ -97,27 +101,35 @@ public class PresenterImplTest {
     @Test
     public void shouldReturnErrorWhenOpenNullPath() {
         target.onOpenFile(null);
-        assertEquals("File path should not be null", view.error);
+        assertEquals(Constants.ERROR_NULL_FILE_PATH, view.message);
     }
     
     @DisplayName("Should return error when cannot access file ")
     @Test
     public void shouldReturnCannotAccessFile() {
         target.onOpenFile("testData_1.txt");
-        assertEquals("Cannot access file", view.error);
+        assertEquals(Constants.ERROR_CANNOT_ACCESS_FILE, view.message);
     }
     
     @DisplayName("Should return path incorrect format")
     @Test
     public void shouldReturnPathIncorrectFormat() {
         target.onOpenFile("testDa**<>/_1");
-        assertEquals("Path has incorrect format", view.error);
+        assertEquals(Constants.ERROR_INCORRECT_FORMAT_PATH, view.message);
+    }
+    
+    @DisplayName("Should print exit when receive empty path")
+    @ParameterizedTest
+    @ValueSource(strings = {""," "})
+    public void shouldPrintExitWhenReceiveEmptyPath(String data){
+        assertDoesNotThrow(() -> target.onOpenFile(data));
+        assertEquals(Constants.NOTICE_EXIT, view.message);
     }
 
     private class ViewMock implements View {
 
         public Long totalStartM;
-        public String error;
+        public String message;
         public List<String> listWord;
 
         @Override
@@ -135,8 +147,8 @@ public class PresenterImplTest {
         }
 
         @Override
-        public void showError(String message) {
-            error = message;
+        public void showMessage(String message) {
+            this.message = message;
         }
 
         @Override

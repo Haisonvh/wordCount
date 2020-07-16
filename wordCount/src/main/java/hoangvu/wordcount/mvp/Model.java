@@ -1,6 +1,7 @@
 
 package hoangvu.wordcount.mvp;
 
+import hoangvu.system.Constants;
 import java.util.Map;
 
 /**
@@ -16,7 +17,7 @@ public abstract class Model {
 
     public void setFilePath(String filePath) throws NullPointerException{
         if (filePath == null)
-            throw new NullPointerException("File path should not be null");
+            throw new NullPointerException(Constants.ERROR_NULL_FILE_PATH);
         this.filePath = filePath;
     }
 
@@ -26,7 +27,7 @@ public abstract class Model {
 
     public void setCounterMap(Map<String, Long> counterMap) throws NullPointerException{
         if (counterMap == null)
-            throw new NullPointerException("CounterMap should not be null");
+            throw new NullPointerException(Constants.ERROR_NULL_MAP_DATA);
         this.counterMap = counterMap;
     }
     

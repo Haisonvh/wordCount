@@ -1,9 +1,9 @@
 package hoangvu.wordcount.mvp;
 
+import hoangvu.system.Constants;
 import java.util.HashMap;
 import java.util.Map;
 import org.junit.jupiter.api.AfterEach;
-import org.junit.jupiter.api.Assertions;
 import static org.junit.jupiter.api.Assertions.assertDoesNotThrow;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertThrows;
@@ -49,7 +49,7 @@ public class ModelTest {
     @Test
     public void shouldThrowExceptionWhenSetNullPath() {
         NullPointerException ex = assertThrows(NullPointerException.class,()->target.setFilePath(null));
-        assertEquals("File path should not be null",ex.getMessage());
+        assertEquals(Constants.ERROR_NULL_FILE_PATH,ex.getMessage());
     }
     
     @DisplayName("Should successfully set empty map data")
@@ -72,6 +72,6 @@ public class ModelTest {
     @Test
     public void shouldThrowExceptionWhenSetNullMapData() {
         NullPointerException ex = assertThrows(NullPointerException.class,()->target.setCounterMap(null));
-        assertEquals("CounterMap should not be null",ex.getMessage());
+        assertEquals(Constants.ERROR_NULL_MAP_DATA,ex.getMessage());
     }
 }

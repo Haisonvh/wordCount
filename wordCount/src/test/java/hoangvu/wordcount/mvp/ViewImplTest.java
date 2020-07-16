@@ -5,6 +5,7 @@
  */
 package hoangvu.wordcount.mvp;
 
+import hoangvu.system.Constants;
 import java.io.ByteArrayInputStream;
 import java.io.ByteArrayOutputStream;
 import java.io.PrintStream;
@@ -53,7 +54,7 @@ public class ViewImplTest {
     @Test
     public void shouldExceptionWhenSetNullPresenter(){
         NullPointerException exception = assertThrows(NullPointerException.class, () -> target.setPresenter(null));
-        assertEquals("Presenter is null", exception.getMessage());
+        assertEquals(Constants.ERROR_NULL_PRESENTER, exception.getMessage());
     }
     
     @DisplayName("Should successfully set presenter")
@@ -68,15 +69,15 @@ public class ViewImplTest {
     @ValueSource(longs = {1,0,1234})
     public void shouldSuccessfullyPrintData(long data){
         assertDoesNotThrow(() -> target.updateTotalWordStartWithM(data));
-        assertEquals("Number of Word start with M or m: "+data+"\r\n", outContent.toString());
+        assertEquals(Constants.NOTICE_NUMBER_OF_WORD+data+"\r\n", outContent.toString());
     }
     
     @DisplayName("Should print error message")
     @ParameterizedTest
     @ValueSource(strings = {"","error"})
     public void shouldSuccessfullyPrintError(String data){
-        assertDoesNotThrow(() -> target.showError(data));
-        assertEquals("ERROR: "+data+"\r\n", outContent.toString());
+        assertDoesNotThrow(() -> target.showMessage(data));
+        assertEquals(data+"\r\n", outContent.toString());
     }
     
     @DisplayName("Should successfully print list of word")
@@ -87,7 +88,7 @@ public class ViewImplTest {
         data.add("word2");
         data.add("word3");
         assertDoesNotThrow(() -> target.updateListWord(data));
-        assertEquals("List of word longer than 5 characters:\r\nword1\r\nword2\r\nword3\r\n", outContent.toString());
+        assertEquals(Constants.NOTICE_LIST_OF_WORD+"\r\nword1\r\nword2\r\nword3\r\n", outContent.toString());
     }
     
     @DisplayName("Should not print empty list")
