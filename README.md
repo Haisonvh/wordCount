@@ -10,22 +10,26 @@ This project is simple Java application which can read from file and count based
 -------------------
 Develop environment
 -------------------
-- Language: Java 8 with Maven
+- Language: Java 8 with Maven 
 - IDE: Netbeans 11.3
 
 --------
 Testing
 --------
+Lib: jUnit5
 
--- Unit Test --
--- Integration Test --
--- System Test --
+- Unit Test: Approaching with a white box testing by using DD-Path.
+- Integration Test: Approach with MM-Path.
+- System Test --
 
 ----------
 Versioning
 ----------
 
+Version 1.0
+
 -------
 License
 -------
+
 Dgit TM
