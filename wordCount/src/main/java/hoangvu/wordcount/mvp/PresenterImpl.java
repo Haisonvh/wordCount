@@ -59,7 +59,11 @@ public class PresenterImpl implements Presenter{
         } catch (InvalidPathException ex) {
             Logger.getLogger(PresenterImpl.class.getName()).log(Level.SEVERE, null, ex);
             view.showError("Path has incorrect format");
+        } catch(NullPointerException ex){
+            Logger.getLogger(PresenterImpl.class.getName()).log(Level.SEVERE, null, ex);
+            view.showError(ex.getMessage());
         } 
+        
     }
     
 }

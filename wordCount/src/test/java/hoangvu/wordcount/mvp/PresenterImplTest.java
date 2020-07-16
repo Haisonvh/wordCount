@@ -93,6 +93,13 @@ public class PresenterImplTest {
         assertArrayEquals(expect, view.listWord.toArray(test));
     }
     
+    @DisplayName("Should return error when open a null path")
+    @Test
+    public void shouldReturnErrorWhenOpenNullPath() {
+        target.onOpenFile(null);
+        assertEquals("File path should not be null", view.error);
+    }
+    
     @DisplayName("Should return error when cannot access file ")
     @Test
     public void shouldReturnCannotAccessFile() {

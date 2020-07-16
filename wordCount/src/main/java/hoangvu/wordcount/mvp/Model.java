@@ -14,7 +14,9 @@ public abstract class Model {
         return filePath;
     }
 
-    public void setFilePath(String filePath) {
+    public void setFilePath(String filePath) throws NullPointerException{
+        if (filePath == null)
+            throw new NullPointerException("File path should not be null");
         this.filePath = filePath;
     }
 
@@ -22,7 +24,9 @@ public abstract class Model {
         return counterMap;
     }
 
-    public void setCounterMap(Map<String, Long> counterMap) {
+    public void setCounterMap(Map<String, Long> counterMap) throws NullPointerException{
+        if (counterMap == null)
+            throw new NullPointerException("CounterMap should not be null");
         this.counterMap = counterMap;
     }
     
