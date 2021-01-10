@@ -18,6 +18,8 @@ public final class Constants {
     public static final String ERROR_NULL_MAP_DATA = "CounterMap should not be null";
     public static final String ERROR_NULL_PRESENTER = "Presenter cannot be null1";
     
+    public static final String ERROR_INTERNAL = "Internal error";
+    
     //annoucement message
     public static final String NOTICE_EXIT = "EXIT";
     public static final String NOTICE_NUMBER_OF_WORD = "Number of Word start with M or m: ";
